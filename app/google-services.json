@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "921529567322",
+    "firebase_url": "https://light-chat-e1322.firebaseio.com",
+    "project_id": "light-chat-e1322",
+    "storage_bucket": "light-chat-e1322.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:921529567322:android:5962067e2ffdf50f20b063",
+        "android_client_info": {
+          "package_name": "com.oblivion.lightchat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "921529567322-2c36ks324pvalo61bc9lm7up6tjht29e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.oblivion.lightchat",
+            "certificate_hash": "d629627f13c2fa53c2a8cc21a2fe95e9b6670fa9"
+          }
+        },
+        {
+          "client_id": "921529567322-7ehq79p4afvaqusom2ikioa2r6mvoch9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5CRMGuCFktPMdGMNTi7c0R4VMkNPR7Nk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "921529567322-7ehq79p4afvaqusom2ikioa2r6mvoch9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
