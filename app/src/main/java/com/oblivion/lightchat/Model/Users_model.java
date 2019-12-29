@@ -7,6 +7,11 @@ public class Users_model {
     private String photoUrl;
     private String noTelp;
 
+
+    public Users_model(){
+
+    }
+
     public Users_model(String userId, String namaUser, String photoUrl, String noTelp) {
         this.userId = userId;
         this.namaUser = namaUser;

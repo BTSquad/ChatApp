@@ -10,6 +10,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.annotation.SuppressLint;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -38,16 +39,12 @@ import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
 
-    private DrawerLayout mDrawerLayout;
-    private ActionBarDrawerToggle mDrawerToogle;
-    private BottomNavigationView navigationView;
-    private FrameLayout mFmlayout;
+    public static Context contextOfApplication;
 
     private Fragment pesanFm, kontakFm;
 
     private PagerAdapter pagerAdapter;
     private ViewPager viewPager;
-    private TabItem tabpesan, tabkontak;
     private TabLayout tabLayout;
 
     private FirebaseAuth mAuth;
@@ -60,29 +57,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        pesanFm = new PesanFragment();
-        kontakFm = new KontakFragment();
+        init();
 
-        mAuth = FirebaseAuth.getInstance();
-        mUser = mAuth.getCurrentUser();
-
-        tabLayout = findViewById(R.id.tab_view);
- //     tabpesan = findViewById(R.id.tabPesan);
-//      tabkontak = findViewById(R.id.tabKontak);
-        viewPager = findViewById(R.id.viewPager_slide);
-
-        Toolbar toolbar = findViewById(R.id.toolBar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-        getSupportActionBar().setLogo(R.drawable.ic_account);
-        getSupportActionBar().setDisplayUseLogoEnabled(true);
+        contextOfApplication = getApplicationContext();
 
         pagerAdapter = new PagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(pagerAdapter);
 
         tabLayout.getTabAt(0).getIcon().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
         tabLayout.getTabAt(1).getIcon().setColorFilter(R.color.primaryDarkColor, PorterDuff.Mode.SRC_IN);
-
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -110,7 +93,24 @@ public class MainActivity extends AppCompatActivity {
         });
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
+    }
 
+    private void init(){
+
+        pesanFm = new PesanFragment();
+        kontakFm = new KontakFragment();
+
+        mAuth = FirebaseAuth.getInstance();
+        mUser = mAuth.getCurrentUser();
+
+        tabLayout = findViewById(R.id.tab_view);
+        viewPager = findViewById(R.id.viewPager_slide);
+
+        Toolbar toolbar = findViewById(R.id.toolBar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setLogo(R.drawable.ic_account);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
 
     }
 
@@ -120,18 +120,6 @@ public class MainActivity extends AppCompatActivity {
         inflater.inflate(R.menu.setelan, menu);
         return super.onCreateOptionsMenu(menu);
 
-    }
-
-    private Drawable drawableFromUrl(String url) throws IOException {
-        Bitmap x;
-
-
-        HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
-        connection.connect();
-        InputStream input = connection.getInputStream();
-
-        x = BitmapFactory.decodeStream(input);
-        return new BitmapDrawable(this.getResources(), x);
     }
 
     private void setFragment(Fragment fragment){

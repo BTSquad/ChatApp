@@ -22,10 +22,7 @@
             android:background="@color/primaryColor"
             android:theme="@style/ThemeOverlay.AppCompat.Dark"
             app:popupTheme="@style/AppTheme.PopupOverlay"
-            >
-
-        </androidx.appcompat.widget.Toolbar>
-
+           />
 
         <com.google.android.material.tabs.TabLayout
             android:layout_width="match_parent"

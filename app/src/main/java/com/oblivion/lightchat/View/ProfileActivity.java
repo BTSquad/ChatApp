@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,6 +46,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     private ImageView imageUser;
     private EditText userName_edt;
+    private ProgressBar progressBar;
     private Uri fileUri;
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
@@ -131,12 +133,13 @@ public class ProfileActivity extends AppCompatActivity {
                                                 reference.child(mUser.getUid()).setValue(users_model).addOnCompleteListener(new OnCompleteListener<Void>() {
                                                     @Override
                                                     public void onComplete(@NonNull Task<Void> task) {
+                                                        progressBar.setVisibility(View.INVISIBLE);
                                                         updateUI();
                                                     }
                                                 });
 
                                             }else {
-
+                                                progressBar.setVisibility(View.INVISIBLE);
                                                 Toast.makeText(ProfileActivity.this, "Photo Gagal Diubah", Toast.LENGTH_SHORT).show();
                                             }
                                         }
@@ -148,6 +151,7 @@ public class ProfileActivity extends AppCompatActivity {
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
+                    progressBar.setVisibility(View.INVISIBLE);
                     Toast.makeText(ProfileActivity.this, "Gagal mengupload", Toast.LENGTH_SHORT).show();
                 }
             });
@@ -160,6 +164,8 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void init(){
+        progressBar = findViewById(R.id.progressBar_profile);
+        progressBar.setVisibility(View.INVISIBLE);
 
         ImageView back_btn = findViewById(R.id.back);
         ImageView pickPhotoGaleri= findViewById(R.id.edit_PhotoProfile);
@@ -185,7 +191,7 @@ public class ProfileActivity extends AppCompatActivity {
                     e.printStackTrace();
 
                 }
-
+                progressBar.setVisibility(View.VISIBLE);
                 simpanDataUser();
 
             }
@@ -214,6 +220,7 @@ public class ProfileActivity extends AppCompatActivity {
                     Toast.makeText(ProfileActivity.this, "Nama masih kosong", Toast.LENGTH_LONG).show();
                 }
                 else {
+                    progressBar.setVisibility(View.VISIBLE);
                     simpanDataUser();
                 }
 

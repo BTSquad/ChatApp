@@ -14,14 +14,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-<!--            <ProgressBar-->
-<!--                android:id="@+id/progress_bar"-->
-<!--                android:layout_width="50dp"-->
-<!--                android:layout_height="50dp"-->
-<!--                android:elevation="5dp"-->
-<!--                android:layout_centerHorizontal="true"-->
-<!--                android:layout_marginTop="310dp"-->
-<!--                />-->
+            <ProgressBar
+                android:id="@+id/progressBar_verfikasi"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:elevation="5dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="310dp"
+                />
 
 
             <LinearLayout

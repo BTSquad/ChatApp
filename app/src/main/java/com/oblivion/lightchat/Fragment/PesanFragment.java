@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -38,10 +39,9 @@ public class PesanFragment extends Fragment {
         View v =  inflater.inflate(R.layout.fragment_pesan, container, false);
 
         logOut = v.findViewById(R.id.logout);
-
+        TextView textView = v.findViewById(R.id.text_test);
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
-
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,6 +50,9 @@ public class PesanFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), MasukActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
+
+
+
             }
         });
 

@@ -42,6 +42,7 @@ public class VerifikasiActivity extends AppCompatActivity {
     private ImageView back_btn;
     private FirebaseAuth mAuth;
     private EditText verifkode_edt;
+    private ProgressBar progressBar;
     String nomor;
     private PhoneAuthProvider.ForceResendingToken resendToken;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
@@ -57,7 +58,6 @@ public class VerifikasiActivity extends AppCompatActivity {
         init();
         kirimKodeVerifikasi();
 
-
     }
 
     private void init(){
@@ -66,10 +66,10 @@ public class VerifikasiActivity extends AppCompatActivity {
         kirim_ulang_btn = findViewById(R.id.btn_verifUlang);
         back_btn = findViewById(R.id.back);
         verifkode_edt = findViewById(R.id.verfikasi_kode);
-
+        progressBar = findViewById(R.id.progressBar_verfikasi);
         mAuth = FirebaseAuth.getInstance();
 
-
+        progressBar.setVisibility(View.INVISIBLE);
         verifikasi_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -128,6 +128,7 @@ public class VerifikasiActivity extends AppCompatActivity {
 
             @Override
             public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
+                progressBar.setVisibility(View.INVISIBLE);
                 signWithCredentialPhone(phoneAuthCredential);
 
             }
@@ -151,7 +152,7 @@ public class VerifikasiActivity extends AppCompatActivity {
     }
 
     private void kirimKodeVerifikasi(){
-
+        progressBar.setVisibility(View.VISIBLE);
         callbackVerif();
 
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
@@ -183,7 +184,6 @@ public class VerifikasiActivity extends AppCompatActivity {
                     assert user != null;
                     cekUserId(user);
 
-
                 }else {
 
                     if (task.getException() instanceof FirebaseAuthInvalidCredentialsException){
@@ -196,11 +196,8 @@ public class VerifikasiActivity extends AppCompatActivity {
         });
     }
 
-
-
-
     private void resendVerificationCode(String nomor, PhoneAuthProvider.ForceResendingToken token) {
-
+        progressBar.setVisibility(View.VISIBLE);
         callbackVerif();
 
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
