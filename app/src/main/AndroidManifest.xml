@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.oblivion.lightchat">
 
-    <uses-permission android:name="android.permission.READ_CONTACTS"/>
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/logo_app"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".View.ProfileActivity"/>
+        <activity android:name=".View.ChatActivity"></activity>
+        <activity android:name=".View.ProfileActivity" />
         <activity android:name=".View.MasukActivity" />
         <activity android:name=".View.VerifikasiActivity" />
         <activity android:name=".View.MainActivity" />

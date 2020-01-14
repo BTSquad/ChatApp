@@ -3,8 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/setelan"
+        android:id="@+id/setelan_menu"
         android:title="Setelan"
+        app:showAsAction="never"
+        />
+
+    <item
+        android:id="@+id/logout_item"
+        android:title="Logout"
         app:showAsAction="never"
         />
 

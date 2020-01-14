@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <LinearLayout
-        android:id="@+id/chat_User"
+        android:id="@+id/klik_pesan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -14,7 +14,7 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             app:civ_circle_background_color="@color/primaryTextColor"
-            android:id="@+id/kontak_image"
+            android:id="@+id/image_receiver"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:src="@mipmap/userdefault"
@@ -22,30 +22,30 @@
             app:civ_border_color="@color/primaryTextColor"
             />
 
-    <LinearLayout
-        android:layout_gravity="center_vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp">
-
-        <TextView
-            android:id="@+id/nama_kontak"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_gravity="center_vertical"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nama Kontak"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:layout_marginBottom="2.5dp"/>
+            android:orientation="vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
 
-        <TextView
-            android:layout_marginTop="2.5dp"
-            android:id="@+id/nomor_kontak"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="+62 xxx xxxx xxxx"
-            android:textSize="14sp"/>
+            <TextView
+                android:id="@+id/nama_receiver"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nama User"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_marginBottom="2.5dp"/>
+
+            <TextView
+                android:layout_marginTop="2.5dp"
+                android:id="@+id/last_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pesan Terkahir"
+                android:textSize="14sp"/>
 
 
 

@@ -53,8 +53,6 @@ public class KontakFragment extends Fragment {
     private DatabaseReference reference;
     private long data;
 
-
-
     public KontakFragment() {
         // Required empty public constructor
     }
@@ -77,7 +75,6 @@ public class KontakFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 if (isConnected(getContext())){
                     getContact();
                 }else {
@@ -184,8 +181,7 @@ public class KontakFragment extends Fragment {
 
     }
 
-
-    public boolean isConnected(Context context) {
+    private boolean isConnected(Context context) {
 
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netinfo = cm.getActiveNetworkInfo();
@@ -200,7 +196,7 @@ public class KontakFragment extends Fragment {
             return false;
     }
 
-    public AlertDialog.Builder buildDialog(Context c) {
+    private AlertDialog.Builder buildDialog(Context c) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(c);
         builder.setTitle("Anda Sedang Offline");
@@ -216,8 +212,6 @@ public class KontakFragment extends Fragment {
 
         return builder;
     }
-
-
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {

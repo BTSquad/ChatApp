@@ -1,7 +1,9 @@
 package com.oblivion.lightchat.View;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -11,6 +13,7 @@ import androidx.viewpager.widget.ViewPager;
 import android.annotation.SuppressLint;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -20,7 +23,10 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabItem;
@@ -31,6 +37,7 @@ import com.oblivion.lightchat.Adapter.PagerAdapter;
 import com.oblivion.lightchat.Fragment.KontakFragment;
 import com.oblivion.lightchat.Fragment.PesanFragment;
 import com.oblivion.lightchat.R;
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -49,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
-
+    private int extrasPosition;
 
     @SuppressLint("ResourceAsColor")
     @Override
@@ -66,6 +73,14 @@ public class MainActivity extends AppCompatActivity {
 
         tabLayout.getTabAt(0).getIcon().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
         tabLayout.getTabAt(1).getIcon().setColorFilter(R.color.primaryDarkColor, PorterDuff.Mode.SRC_IN);
+
+        Intent intent = getIntent();
+
+        if(intent == null) {
+            extrasPosition = 0;
+        } else {
+            extrasPosition = intent.getIntExtra("position", 0);
+        }
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -92,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        viewPager.setCurrentItem(extrasPosition);
 
     }
 
@@ -108,9 +124,11 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-        getSupportActionBar().setLogo(R.drawable.ic_account);
-        getSupportActionBar().setDisplayUseLogoEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
+
+//        ImageView userPhoto = findViewById(R.id.user_photo);
+//
+//        Picasso.get().load(mUser.getPhotoUrl()).fit().centerCrop().into(userPhoto);
 
     }
 
@@ -119,7 +137,30 @@ public class MainActivity extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.setelan, menu);
         return super.onCreateOptionsMenu(menu);
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()){
+            case R.id.setelan_menu:
+
+                return true;
+
+            case R.id.logout_item:
+
+                mAuth.signOut();
+                Intent intent = new Intent(MainActivity.this, MasukActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+
+                return true;
+
+
+            default:
+                return super.onOptionsItemSelected(item);
+
+        }
     }
 
     private void setFragment(Fragment fragment){
@@ -128,5 +169,8 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.frame_layout, fragment, "Home");
         fragmentTransaction.commit();
     }
+
+
+
 
 }
